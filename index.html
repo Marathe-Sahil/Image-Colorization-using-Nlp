@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Image Colorization & Sketch</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f2f2f2;
+        }
+        canvas {
+            border: 2px solid #333;
+            display: block;
+            margin-bottom: 20px;
+            max-width: 100%;
+        }
+        input[type=range] {
+            width: 100%;
+        }
+        #controls {
+            margin-top: 20px;
+            margin-bottom: 40px;
+        }
+        #sketch-container {
+            margin-top: 40px;
+        }
+        img {
+            border: 2px solid #555;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Image Colorization & Sketch Tool</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="image" required>
+        <button type="submit">Upload & Colorize</button>
+    </form>
+
+    {% if filename %}
+    <div id="controls">
+        <label for="contrast">Adjust Contrast:</label>
+        <input type="range" id="contrast" min="0" max="500" value="128">
+    </div>
+
+    <canvas id="canvas"></canvas>
+
+    <div id="sketch-container">
+        <h3>Sketch of Selected Area:</h3>
+        <img id="sketchResult" src="" width="400">
+    </div>
+    {% endif %}
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
